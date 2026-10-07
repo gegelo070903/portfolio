@@ -283,7 +283,7 @@ a { color: inherit; }
 /* ---------- Featured project gallery (images + hover videos) ---------- */
 .project-featured { grid-template-columns: 1fr; }
 .project-gallery { padding: 26px 26px 0; }
-.gallery-images { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
+.gallery-images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
 .gallery-images img {
   width: 100%; height: 100%; aspect-ratio: 16 / 8.6; object-fit: cover; object-position: top center;
   border-radius: 10px; border: 1px solid var(--border);
