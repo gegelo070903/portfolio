@@ -320,6 +320,16 @@ a { color: inherit; }
 }
 .video-tile.playing .video-label { opacity: 0; }
 
+/* ---------- Ad creatives masonry grid ---------- */
+.ads-grid { columns: 4 220px; column-gap: 12px; }
+.ads-grid img {
+  width: 100%; height: auto; display: block;
+  border-radius: 10px; border: 1px solid var(--border);
+  margin-bottom: 12px; break-inside: avoid;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.ads-grid img:hover { border-color: rgba(255,107,26,.5); transform: translateY(-2px); }
+
 /* ---------- Vertical (9:16) video ads ---------- */
 .gallery-vertical { grid-template-columns: repeat(2, 1fr); max-width: 560px; margin: 0 auto; }
 .video-vertical { aspect-ratio: 9 / 16; max-height: 480px; }
