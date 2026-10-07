@@ -3,6 +3,24 @@
    Dark / charcoal / warm-orange design system
    ============================================================ */
 
+/* Self-hosted fonts (no external requests) */
+@font-face { font-family: "Anton"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/anton-400.woff2") format("woff2"); }
+@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 500 800; font-display: swap;
+  src: url("../fonts/bricolage-500800.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/inter-400.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("../fonts/inter-500.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../fonts/inter-600.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("../fonts/space-500.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../fonts/space-600.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/space-700.woff2") format("woff2"); }
+
 :root {
   --bg: #0a0a0b;
   --bg-2: #0e0e10;
@@ -18,7 +36,7 @@
   --accent-soft: rgba(255, 107, 26, 0.12);
   --accent-glow: rgba(255, 107, 26, 0.35);
   --radius: 14px;
-  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --max-w: 1200px;
   --nav-h: 72px;
@@ -141,8 +159,15 @@ a { color: inherit; }
   mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, #000 30%, transparent 75%);
 }
-.hero-grid { position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 70px; align-items: center; }
-.hero-name { font-size: clamp(44px, 6.2vw, 84px); font-weight: 700; margin: 6px 0 4px; }
+.hero-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.hero-name {
+  font-family: "Anton", "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: clamp(52px, 7.4vw, 102px);
+  line-height: 1.02;
+  letter-spacing: 0.015em;
+  margin: 6px 0 10px;
+}
 .hero-title { font-family: var(--font-display); font-size: clamp(19px, 2.4vw, 27px); font-weight: 500; color: var(--muted); margin-bottom: 20px; }
 .hero-title .divider { color: var(--accent); margin: 0 6px; }
 .hero-desc { color: var(--muted); font-size: clamp(15.5px, 1.6vw, 17.5px); max-width: 520px; margin-bottom: 34px; }
@@ -158,18 +183,54 @@ a { color: inherit; }
 /* Portrait treatment */
 .hero-portrait { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .portrait-frame {
-  position: relative; width: min(340px, 100%); aspect-ratio: 4 / 5;
-  border-radius: 18px; border: 1px solid var(--border-strong);
-  background:
-    radial-gradient(320px 200px at 70% 18%, rgba(255,107,26,.16), transparent 65%),
-    linear-gradient(160deg, #17171a, #0e0e10);
-  display: flex; align-items: center; justify-content: center; overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  position: relative; width: min(580px, 100%);
+  display: flex; align-items: flex-end; justify-content: center;
 }
 .portrait-frame::before {
-  content: ""; position: absolute; inset: 14px; border: 1px solid rgba(255,107,26,.28); border-radius: 10px; pointer-events: none; z-index: 2;
+  content: ""; position: absolute; inset: 8% 2% 0; z-index: 0;
+  background: radial-gradient(closest-side, rgba(255,107,26,.20), transparent 72%);
+  filter: blur(12px); pointer-events: none;
+  border: 0;
 }
-.portrait-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.portrait-photo {
+  position: relative; z-index: 1; width: 100%; height: auto; display: block;
+  filter: saturate(.94) contrast(1.04) brightness(.97);
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 99%);
+  mask-image: linear-gradient(to bottom, #000 80%, transparent 99%);
+}
+/* Warm color grade so the portrait suits the dark background */
+.portrait-frame::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    linear-gradient(165deg, rgba(255,107,26,.16), transparent 45%),
+    linear-gradient(to top, rgba(10,10,11,.5), transparent 42%);
+  mix-blend-mode: soft-light;
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 99%);
+  mask-image: linear-gradient(to bottom, #000 80%, transparent 99%);
+}
+/* Decorative background design around the portrait */
+.portrait-decor { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.decor-ring {
+  position: absolute; top: 50%; left: 50%; width: 560px; height: 560px;
+  transform: translate(-50%, -52%);
+  border: 1px solid rgba(255,255,255,.07); border-radius: 50%;
+}
+.decor-ring.small {
+  width: 430px; height: 430px; transform: translate(-50%, -52%);
+  border-color: rgba(255,107,26,.14);
+}
+.decor-dot {
+  position: absolute; top: calc(50% - 291px); left: calc(50% - 5px);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 18px var(--accent-glow);
+}
+.decor-plus {
+  position: absolute; color: rgba(255,255,255,.18);
+  font-size: 20px; font-weight: 300; font-family: var(--font-body);
+}
+.decor-plus.p1 { top: 6%; left: 8%; }
+.decor-plus.p2 { top: 22%; right: 4%; color: rgba(255,107,26,.45); }
+.decor-plus.p3 { bottom: 18%; left: 2%; }
 .portrait-inner { text-align: center; }
 .portrait-mono { display: block; font-family: var(--font-display); font-size: 92px; font-weight: 700; color: var(--text); line-height: 1; }
 .portrait-mono::first-letter { color: var(--accent); }
@@ -225,6 +286,46 @@ a { color: inherit; }
 .project-links a { color: var(--text); font-size: 14px; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px; transition: color .18s; }
 .project-links a:hover { color: var(--accent); }
 .private-note { font-size: 13.5px; color: var(--faint); font-style: italic; }
+
+/* ---------- Featured project gallery (images + hover videos) ---------- */
+.project-featured { grid-template-columns: 1fr; }
+.project-gallery { padding: 26px 26px 0; }
+.gallery-images { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
+.gallery-images img {
+  width: 100%; height: 100%; aspect-ratio: 16 / 8.6; object-fit: cover; object-position: top center;
+  border-radius: 10px; border: 1px solid var(--border);
+  transition: border-color .2s ease, transform .2s ease;
+}
+.gallery-images img:hover { border-color: rgba(255,107,26,.5); transform: translateY(-2px); }
+.gallery-videos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.video-tile {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border); background: #000; cursor: pointer;
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.video-tile:hover { border-color: rgba(255,107,26,.55); box-shadow: 0 12px 34px rgba(0,0,0,.5), 0 0 0 1px rgba(255,107,26,.15); }
+.video-tile .video-poster, .video-tile video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.video-tile video { opacity: 0; transition: opacity .45s ease; }
+.video-tile.playing video { opacity: 1; }
+.video-hint {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .04em;
+  background: rgba(10,10,11,.45);
+  opacity: 1; transition: opacity .3s ease;
+}
+.video-hint .icon { width: 30px; height: 30px; color: var(--accent); }
+.video-tile.playing .video-hint { opacity: 0; pointer-events: none; }
+.video-label {
+  position: absolute; left: 10px; bottom: 10px; z-index: 2;
+  font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text); background: rgba(10,10,11,.72); border: 1px solid var(--border-strong);
+  padding: 5px 11px; border-radius: 999px; backdrop-filter: blur(6px);
+  transition: opacity .3s ease;
+}
+.video-tile.playing .video-label { opacity: 0; }
 
 /* ---------- Experience ---------- */
 .timeline { list-style: none; margin: 0 0 60px; padding: 0; position: relative; }
@@ -306,7 +407,7 @@ a { color: inherit; }
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; gap: 56px; }
   .hero-portrait { order: -1; }
-  .portrait-frame { width: min(280px, 80%); }
+  .portrait-frame { width: min(340px, 85%); margin-inline: auto; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .project, .project:nth-child(even) .project-media { grid-template-columns: 1fr; }
@@ -317,6 +418,7 @@ a { color: inherit; }
   .timeline::before { left: 118px; }
   .timeline-item { grid-template-columns: 92px 1fr; gap: 44px; }
   .timeline-item::before { left: 113px; }
+  .gallery-images { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 720px) {
@@ -344,6 +446,8 @@ a { color: inherit; }
   .about-cards { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
   .project-body { padding: 28px 24px; }
+  .project-gallery { padding: 18px 18px 0; }
+  .gallery-videos { grid-template-columns: 1fr; }
   .timeline::before { display: none; }
   .timeline-item { grid-template-columns: 1fr; gap: 6px; }
   .timeline-item::before { display: none; }
