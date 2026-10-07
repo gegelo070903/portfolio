@@ -101,6 +101,18 @@
     });
   });
 
+  /* ---------- Collapsible ads gallery ---------- */
+  var adsToggle = document.getElementById("adsToggle");
+  var adsCollapse = document.getElementById("adsCollapse");
+  if (adsToggle && adsCollapse) {
+    var adsLabel = adsToggle.querySelector(".ads-toggle-text");
+    adsToggle.addEventListener("click", function () {
+      var open = adsCollapse.classList.toggle("open");
+      adsToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (adsLabel) adsLabel.textContent = open ? "Show less" : "Show all 16 designs";
+    });
+  }
+
   /* ---------- Live GitHub stats (real data, graceful fallback) ---------- */
   function setStat(key, value) {
     document.querySelectorAll('[data-github="' + key + '"]').forEach(function (el) {
