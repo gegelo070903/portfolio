@@ -96,10 +96,83 @@
     }
     tile.addEventListener("mouseenter", play);
     tile.addEventListener("mouseleave", stop);
-    tile.addEventListener("click", function () {
-      if (tile.classList.contains("playing")) stop(); else play();
-    });
   });
+
+  /* ---------- Video lightbox (click a tile for the big viewer) ---------- */
+  var lb = document.getElementById("videoLightbox");
+  var lbVideo = document.getElementById("lbVideo");
+  var lbCaption = document.getElementById("lbCaption");
+  var lbFrame = document.getElementById("lbFrame");
+  var lbPrev = document.getElementById("lbPrev");
+  var lbNext = document.getElementById("lbNext");
+  var lbList = [];
+  var lbIndex = 0;
+
+  function lbLoad() {
+    var tile = lbList[lbIndex];
+    if (!tile) return;
+    var src = tile.querySelector("video").getAttribute("src");
+    var label = tile.querySelector(".video-label");
+    lbVideo.src = src;
+    lbVideo.load();
+    lbCaption.textContent = label ? label.textContent : "";
+    var multi = lbList.length > 1;
+    lbPrev.style.display = multi ? "" : "none";
+    lbNext.style.display = multi ? "" : "none";
+  }
+  function lbOpen(tiles, index) {
+    lbList = tiles;
+    lbIndex = index;
+    lbLoad();
+    lb.hidden = false;
+    document.body.style.overflow = "hidden";
+    var p = lbVideo.play();
+    if (p) p.catch(function () {});
+  }
+  function lbClose() {
+    lbVideo.pause();
+    lbVideo.removeAttribute("src");
+    lbVideo.load();
+    lb.hidden = true;
+    document.body.style.overflow = "";
+    if (document.fullscreenElement && document.exitFullscreen) {
+      document.exitFullscreen().catch(function () {});
+    }
+  }
+  function lbStep(dir) {
+    lbIndex = (lbIndex + dir + lbList.length) % lbList.length;
+    lbLoad();
+    var p = lbVideo.play();
+    if (p) p.catch(function () {});
+  }
+
+  if (lb) {
+    document.querySelectorAll(".gallery-videos").forEach(function (gal) {
+      var tiles = Array.prototype.slice.call(gal.querySelectorAll(".video-tile"));
+      tiles.forEach(function (tile, i) {
+        tile.addEventListener("click", function () { lbOpen(tiles, i); });
+      });
+    });
+    document.getElementById("lbClose").addEventListener("click", lbClose);
+    document.getElementById("lbBackdrop").addEventListener("click", lbClose);
+    lbPrev.addEventListener("click", function (e) { e.stopPropagation(); lbStep(-1); });
+    lbNext.addEventListener("click", function (e) { e.stopPropagation(); lbStep(1); });
+    document.getElementById("lbFull").addEventListener("click", function () {
+      if (document.fullscreenElement) {
+        if (document.exitFullscreen) document.exitFullscreen().catch(function () {});
+      } else if (lbFrame.requestFullscreen) {
+        lbFrame.requestFullscreen().catch(function () {});
+      } else if (lbVideo.requestFullscreen) {
+        lbVideo.requestFullscreen().catch(function () {});
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (lb.hidden) return;
+      if (e.key === "Escape") lbClose();
+      else if (e.key === "ArrowLeft") lbStep(-1);
+      else if (e.key === "ArrowRight") lbStep(1);
+    });
+  }
 
   /* ---------- Collapsible ads gallery ---------- */
   var adsToggle = document.getElementById("adsToggle");
