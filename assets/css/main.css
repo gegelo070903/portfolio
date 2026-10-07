@@ -320,6 +320,10 @@ a { color: inherit; }
 }
 .video-tile.playing .video-label { opacity: 0; }
 
+/* ---------- Vertical (9:16) video ads ---------- */
+.gallery-vertical { grid-template-columns: repeat(2, 1fr); max-width: 560px; margin: 0 auto; }
+.video-vertical { aspect-ratio: 9 / 16; max-height: 480px; }
+
 /* ---------- Experience ---------- */
 .timeline { list-style: none; margin: 0 0 60px; padding: 0; position: relative; }
 .timeline::before { content: ""; position: absolute; left: 148px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
