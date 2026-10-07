@@ -79,6 +79,28 @@
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
+  /* ---------- Hover-to-play project videos ---------- */
+  document.querySelectorAll(".video-tile").forEach(function (tile) {
+    var video = tile.querySelector("video");
+    if (!video) return;
+    function play() {
+      if (prefersReduced) return;
+      var p = video.play();
+      if (p) p.catch(function () {});
+      tile.classList.add("playing");
+    }
+    function stop() {
+      video.pause();
+      try { video.currentTime = 0; } catch (e) {}
+      tile.classList.remove("playing");
+    }
+    tile.addEventListener("mouseenter", play);
+    tile.addEventListener("mouseleave", stop);
+    tile.addEventListener("click", function () {
+      if (tile.classList.contains("playing")) stop(); else play();
+    });
+  });
+
   /* ---------- Live GitHub stats (real data, graceful fallback) ---------- */
   function setStat(key, value) {
     document.querySelectorAll('[data-github="' + key + '"]').forEach(function (el) {
