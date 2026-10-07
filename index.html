@@ -8,11 +8,8 @@
   <meta property="og:title" content="John Angelo Vasquez — Web Developer &amp; Designer">
   <meta property="og:description" content="I design and build clean, functional websites and digital experiences.">
   <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0b'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='%23ff6b1a' text-anchor='middle'%3EJV%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff6b1a'/%3E%3C/svg%3E">
 </head>
 <body>
 
@@ -22,7 +19,6 @@
   <header class="nav" id="nav">
     <div class="container nav-inner">
       <a href="#home" class="brand" aria-label="John Angelo Vasquez — home">
-        <span class="brand-mark">JV</span>
         <span class="brand-name">John Angelo Vasquez</span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Primary">
@@ -78,11 +74,15 @@
         </div>
         <div class="hero-portrait reveal">
           <div class="portrait-frame" role="img" aria-label="Professional portrait of John Angelo Vasquez">
-            <img src="assets/img/portrait.jpg" alt="Portrait of John Angelo Vasquez" class="portrait-photo">
-            <span class="frame-corner tl" aria-hidden="true"></span>
-            <span class="frame-corner tr" aria-hidden="true"></span>
-            <span class="frame-corner bl" aria-hidden="true"></span>
-            <span class="frame-corner br" aria-hidden="true"></span>
+            <div class="portrait-decor" aria-hidden="true">
+              <span class="decor-ring"></span>
+              <span class="decor-ring small"></span>
+              <span class="decor-dot"></span>
+              <span class="decor-plus p1">+</span>
+              <span class="decor-plus p2">+</span>
+              <span class="decor-plus p3">+</span>
+            </div>
+            <img src="assets/img/portrait-cutout.webp" alt="Portrait of John Angelo Vasquez" class="portrait-photo">
           </div>
           <p class="portrait-caption">Bacolod City, Philippines</p>
         </div>
@@ -323,7 +323,9 @@
         <div class="github-grid">
           <a class="card github-profile reveal" href="https://github.com/gegelo070903" target="_blank" rel="noopener">
             <div class="github-top">
-              <span class="github-avatar">JV</span>
+              <span class="github-avatar" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+              </span>
               <div>
                 <h3>gegelo070903</h3>
                 <p class="muted">github.com/gegelo070903</p>
@@ -383,7 +385,6 @@
   <footer class="footer">
     <div class="container footer-inner">
       <a href="#home" class="brand">
-        <span class="brand-mark">JV</span>
         <span class="brand-name">John Angelo Vasquez</span>
       </a>
       <p class="muted">© <span id="year">2026</span> John Angelo Vasquez. All rights reserved.</p>
