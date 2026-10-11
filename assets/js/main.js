@@ -1,5 +1,5 @@
 /* ============================================================
-   John Angelo Vasquez — Portfolio interactions
+   John Angelo Vasquez | Portfolio interactions
    ============================================================ */
 (function () {
   "use strict";
