@@ -597,3 +597,26 @@ a { color: inherit; }
     .info-duo a { display: block; }
     .info-duo img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); }
     @media (max-width: 720px) { .info-duo { grid-template-columns: 1fr; } }
+
+    .profile-reference.reveal { transform: none; }
+    .profile-reference .portrait-frame { width: min(600px, 100%); height: clamp(540px, 52vw, 640px); margin-left: 3%; overflow: visible; opacity: 0; transform: translateX(150px); transition: opacity .8s ease .08s, transform 1.05s cubic-bezier(.22,.75,.24,1) .08s; }
+    .profile-reference.visible .portrait-frame { opacity: 1; transform: translateX(0); }
+    .profile-reference .portrait-caption { opacity: 0; transform: translateX(76px); transition: opacity .75s ease .34s, transform .95s cubic-bezier(.22,.75,.24,1) .34s; }
+    .profile-reference.visible .portrait-caption { opacity: 1; transform: translateX(0); }
+    .profile-reference .portrait-frame::before { inset: 4% -4% 8%; background: radial-gradient(closest-side, rgba(255,107,26,.22), transparent 72%); }
+    .profile-reference .portrait-frame::after { background: linear-gradient(to top, rgba(10,10,11,.46), transparent 34%); mix-blend-mode: normal; }
+    .profile-halo { position: absolute; z-index: 0; top: -1%; left: 50%; width: min(570px, 94%); aspect-ratio: 1; transform: translateX(-50%); border: 1px solid rgba(255,107,26,.3); border-radius: 50%; background: radial-gradient(circle at 50% 34%, rgba(255,107,26,.2), rgba(255,107,26,.045) 48%, transparent 70%); box-shadow: 0 0 90px rgba(255,107,26,.13), inset 0 0 70px rgba(255,107,26,.05); pointer-events: none; }
+    .profile-reference .portrait-decor { z-index: 1; }
+    .profile-reference .decor-ring { width: 590px; height: 590px; top: 43%; border-color: rgba(255,255,255,.055); }
+    .profile-reference .decor-ring.small { width: 448px; height: 448px; top: 43%; border-color: rgba(255,107,26,.16); }
+    .profile-reference .decor-dot { top: calc(43% - 298px); }
+    .profile-reference .portrait-photo { position: absolute; z-index: 2; left: 50%; bottom: -10%; width: 126%; max-width: none; height: auto; transform: translateX(-50%); filter: saturate(.96) contrast(1.04) brightness(.98); }
+    @media (max-width: 1024px) {
+      .profile-reference .portrait-frame { width: min(370px, 94vw); height: 455px; margin-inline: auto; transform: translateX(76px); }
+      .profile-reference.visible .portrait-frame { transform: translateX(0); }
+      .profile-halo { width: min(350px, 92%); }
+      .profile-reference .decor-ring { width: 360px; height: 360px; }
+      .profile-reference .decor-ring.small { width: 282px; height: 282px; }
+      .profile-reference .decor-dot { top: calc(43% - 184px); }
+      .profile-reference .portrait-photo { width: 140%; bottom: -13%; }
+    }
