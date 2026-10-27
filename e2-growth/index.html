@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growing E2 to 1,000 Members | Ideas by John (Gelo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0b0e14;
+  --bg2: #0e1219;
+  --panel: #12161f;
+  --panel2: #151a26;
+  --line: rgba(255,255,255,0.08);
+  --line-soft: rgba(255,255,255,0.05);
+  --ink: #f4f5f7;
+  --soft: #9aa3b5;
+  --soft2: #6e7789;
+  --orange: #ff7a45;
+  --teal: #2dd4bf;
+  --amber: #f5b841;
+  --violet: #a78bfa;
+  --green: #4ade80;
+  --radius: 20px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: "Plus Jakarta Sans", Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(720px 420px at 12% -60px, rgba(255,122,69,0.13), transparent 65%), radial-gradient(820px 480px at 88% 40px, rgba(45,212,191,0.10), transparent 65%), radial-gradient(900px 620px at 50% 115%, rgba(167,139,250,0.07), transparent 65%); pointer-events: none; z-index: 0; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px); background: rgba(11,14,20,0.72); border-bottom: 1px solid var(--line-soft); }
+.topbar { max-width: 1080px; margin: 0 auto; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.logo { font-weight: 800; font-size: 19px; letter-spacing: 0.2px; }
+.logo span { background: linear-gradient(92deg, var(--orange), var(--amber)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.badge { border: 1px solid var(--line); background: rgba(255,255,255,0.04); color: var(--ink); font-size: 12.5px; font-weight: 600; padding: 7px 14px; border-radius: 999px; }
+.hero { padding: 74px 0 10px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(245,184,65,0.32); background: rgba(245,184,65,0.08); color: var(--amber); font-weight: 700; font-size: 12.5px; letter-spacing: 0.4px; padding: 7px 14px; border-radius: 999px; margin-bottom: 24px; }
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); }
+h1 { font-size: 52px; line-height: 1.1; font-weight: 800; letter-spacing: -0.5px; max-width: 800px; }
+h1 .grad { background: linear-gradient(92deg, var(--teal), #7dd3fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p { color: var(--soft); font-size: 17.5px; max-width: 690px; margin-top: 20px; font-weight: 500; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); background: linear-gradient(var(--panel), var(--panel)) padding-box, linear-gradient(120deg, rgba(255,122,69,0.45), rgba(45,212,191,0.35), rgba(167,139,250,0.35)) border-box; border: 1px solid transparent; border-radius: var(--radius); margin: 40px 0 6px; overflow: hidden; }
+.stat { padding: 24px 22px; }
+.stat + .stat { border-left: 1px solid var(--line-soft); }
+.stat .tick { width: 22px; height: 3px; border-radius: 3px; background: var(--orange); margin-bottom: 12px; }
+.stat:nth-child(2) .tick { background: var(--teal); }
+.stat:nth-child(3) .tick { background: var(--amber); }
+.stat:nth-child(4) .tick { background: var(--violet); }
+.stat b { display: block; font-size: 33px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; letter-spacing: -0.3px; }
+.stat span { color: var(--soft); font-size: 13px; font-weight: 600; }
+.progress { height: 6px; background: rgba(255,255,255,0.07); border-radius: 999px; margin: 18px 2px 0; overflow: hidden; }
+.progress i { display: block; height: 100%; width: 76.5%; border-radius: 999px; background: linear-gradient(90deg, var(--orange), var(--amber), var(--teal)); }
+.progress-label { display: flex; justify-content: space-between; color: var(--soft2); font-size: 12.5px; font-weight: 600; margin-top: 8px; }
+section { padding: 54px 0 4px; }
+.kicker { color: var(--orange); font-size: 12.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 10px; }
+h2 { font-size: 31px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 8px; }
+.sub { color: var(--soft); font-weight: 500; max-width: 700px; margin-bottom: 26px; font-size: 16px; }
+.grid5 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 26px 24px; transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease; }
+.card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.16); background: var(--panel2); }
+.card h3 { font-size: 17.5px; font-weight: 700; margin-bottom: 7px; letter-spacing: -0.2px; }
+.card p { color: var(--soft); font-size: 14.5px; font-weight: 500; }
+.tag { display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; margin-bottom: 14px; border: 1px solid; }
+.t1 { background: rgba(255,122,69,0.10); color: var(--orange); border-color: rgba(255,122,69,0.30); }
+.t2 { background: rgba(45,212,191,0.09); color: var(--teal); border-color: rgba(45,212,191,0.28); }
+.t3 { background: rgba(245,184,65,0.09); color: var(--amber); border-color: rgba(245,184,65,0.28); }
+.t4 { background: rgba(167,139,250,0.10); color: var(--violet); border-color: rgba(167,139,250,0.30); }
+.t5 { background: rgba(74,222,128,0.09); color: var(--green); border-color: rgba(74,222,128,0.28); }
+.idea { display: flex; gap: 20px; background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 26px 24px; margin-bottom: 16px; align-items: flex-start; transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease; }
+.idea:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.16); background: var(--panel2); }
+.num { flex: 0 0 48px; width: 48px; height: 48px; border-radius: 15px; background: linear-gradient(140deg, rgba(255,122,69,0.20), rgba(45,212,191,0.14)); border: 1px solid rgba(255,255,255,0.12); color: var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 19px; font-variant-numeric: tabular-nums; }
+.idea h3 { font-size: 18px; font-weight: 700; margin-bottom: 5px; letter-spacing: -0.2px; }
+.idea p { color: var(--soft); font-size: 15px; font-weight: 500; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.step { background: linear-gradient(var(--panel), var(--panel)) padding-box, linear-gradient(160deg, rgba(255,122,69,0.40), rgba(255,255,255,0.07) 45%, rgba(45,212,191,0.35)) border-box; border: 1px solid transparent; border-radius: var(--radius); padding: 26px 24px; }
+.step .when { color: var(--amber); font-weight: 800; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; }
+.step h3 { font-size: 18.5px; font-weight: 700; margin: 10px 0 7px; letter-spacing: -0.2px; }
+.step p { color: var(--soft); font-size: 14.5px; font-weight: 500; }
+.note { background: linear-gradient(120deg, rgba(45,212,191,0.10), rgba(255,122,69,0.07)); border: 1px solid rgba(45,212,191,0.22); border-radius: var(--radius); padding: 28px 26px; margin-top: 18px; }
+.note h3 { font-size: 19px; font-weight: 800; margin-bottom: 7px; }
+.note p { color: #c3ccd9; font-weight: 500; font-size: 15.5px; }
+footer { padding: 52px 0 44px; margin-top: 56px; border-top: 1px solid var(--line-soft); color: var(--soft2); font-size: 14px; font-weight: 500; }
+footer b { color: var(--ink); }
+@media (max-width: 860px) {
+  h1 { font-size: 36px; }
+  .hero { padding: 48px 0 6px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(3) { border-left: none; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line-soft); }
+  .grid5, .grid2, .steps { grid-template-columns: 1fr; }
+  .idea { padding: 22px 20px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="logo">E2 <span>Growth Plan</span></div>
+    <div class="badge">By John Angelo Vasquez (Gelo)</div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="hero">
+    <span class="eyebrow">Built with my Muse AI team of 5</span>
+    <h1>How E2 grows to <span class="grad">1,000 members</span> and stays the friendliest room on the internet</h1>
+    <p>I set up five AI teammates, each with a different job, and asked them one question: how do we help E2 reach 1,000 members without losing the kind feeling that makes people stay? These are their best ideas, in one simple page.</p>
+    <div class="stats">
+      <div class="stat"><div class="tick"></div><b>765</b><span>Members today</span></div>
+      <div class="stat"><div class="tick"></div><b>1,000</b><span>The goal</span></div>
+      <div class="stat"><div class="tick"></div><b>235</b><span>New members needed</span></div>
+      <div class="stat"><div class="tick"></div><b>3 a day</b><span>For 90 days gets us there</span></div>
+    </div>
+    <div class="progress"><i></i></div>
+    <div class="progress-label"><span>765 members today</span><span>Goal: 1,000</span></div>
+  </div>
+
+  <section>
+    <div class="kicker">The Team</div>
+    <h2>Meet my AI team</h2>
+    <p class="sub">Five sidechats, five roles. Each one looked at the same goal from a different angle.</p>
+    <div class="grid5">
+      <div class="card">
+        <span class="tag t1">Designer</span>
+        <h3>Make joining look good</h3>
+        <p>Every new member gets a welcome card with their photo and their new website link, made to share. When a member shares it, E2 gets seen by all their friends for free.</p>
+      </div>
+      <div class="card">
+        <span class="tag t2">Developer</span>
+        <h3>Turn member sites into invites</h3>
+        <p>Add one small line to the bottom of every free member website: "Made at E2, get yours free." Hundreds of member sites are already out there working as quiet invites, every single day.</p>
+      </div>
+      <div class="card">
+        <span class="tag t3">Marketing</span>
+        <h3>Show it, do not just say it</h3>
+        <p>Post short 30 second videos of a real member getting their website built live. Filipino freelancers and designers watch TikTok, Reels, and Shorts, so that is where E2 should be seen.</p>
+      </div>
+      <div class="card">
+        <span class="tag t4">Community Manager</span>
+        <h3>Give every newcomer a buddy</h3>
+        <p>Pair each new member with one older member for their first week. People who feel noticed in week one stay, help others later, and invite their friends themselves.</p>
+      </div>
+      <div class="card">
+        <span class="tag t5">Content Creator</span>
+        <h3>Tell one member story a week</h3>
+        <p>A short post about one real member: where they started, what they built, what changed. Real stories beat ads, and every story gives that member a reason to share E2 with pride.</p>
+      </div>
+      <div class="card">
+        <span class="tag t2">All five together</span>
+        <h3>One simple loop</h3>
+        <p>A new member joins, gets a site, gets a welcome card, shares both, and brings the next member in. Growth that feeds itself, without buying ads.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">The Plan</div>
+    <h2>The big 5 growth ideas</h2>
+    <p class="sub">If E2 only did these five things, the team believes 235 new members in 90 days is realistic.</p>
+
+    <div class="idea">
+      <div class="num">1</div>
+      <div>
+        <h3>A share line on every member website</h3>
+        <p>Every free site Sam builds carries a small "Made at E2" line that links back to the join page. Members already share their sites everywhere. Each share becomes an invitation that never stops working.</p>
+      </div>
+    </div>
+    <div class="idea">
+      <div class="num">2</div>
+      <div>
+        <h3>Welcome cards people want to post</h3>
+        <p>When a member joins and their site goes live, they receive a nice welcome card with their name, photo, and site link. Most people will post it on Facebook or X the same day. That is free reach from the happiest moment of joining.</p>
+      </div>
+    </div>
+    <div class="idea">
+      <div class="num">3</div>
+      <div>
+        <h3>Live build videos, twice a week</h3>
+        <p>Short clips showing a website going from an intro post to a live page in minutes. End every clip the same way: "Yours is free, link in bio." Post them where Filipino developers, designers, and virtual assistants already spend time.</p>
+      </div>
+    </div>
+    <div class="idea">
+      <div class="num">4</div>
+      <div>
+        <h3>A public bounty board</h3>
+        <p>Show open bounties, like this one, on a public page outside Discord. When people outside can see real tasks with real peso rewards, joining stops being a promise and becomes a clear next step.</p>
+      </div>
+    </div>
+    <div class="idea">
+      <div class="num">5</div>
+      <div>
+        <h3>Bring a friend weeks</h3>
+        <p>Once a month, run one friendly invite week. Members invite people they actually know, new guests get the full welcome, and the members who brought them get thanked in the weekly wins post. Recognition, not pressure.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">The Culture</div>
+    <h2>Keeping it the friendliest</h2>
+    <p class="sub">Growth only works if the room stays kind. These are the community rules my team kept coming back to.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>No dumb questions, ever</h3>
+        <p>Beginners ask basic questions in every community. In E2, the first reply is always helpful, never mocking. That one habit is what new members remember and tell others about.</p>
+      </div>
+      <div class="card">
+        <h3>Feedback starts with a strength</h3>
+        <p>When reviewing someone's work, name one thing that works before one thing to fix. Honest, but kind. People improve faster and keep showing their work.</p>
+      </div>
+      <div class="card">
+        <h3>Notice people in public</h3>
+        <p>Weekly wins, first client shoutouts, and small tips for good work. People stay in rooms where they are seen, and they invite friends to rooms that treat them well.</p>
+      </div>
+      <div class="card">
+        <h3>Check in, do not chase</h3>
+        <p>If a member goes quiet for two weeks, one friendly message: "We miss your work, everything okay?" No sales, no guilt. Just care. Many will come back on their own.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">The Roadmap</div>
+    <h2>A simple 3 step plan</h2>
+    <p class="sub">Nothing here needs a budget. It needs a few weeks of consistency.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="when">Weeks 1 to 2</div>
+        <h3>Build the loop</h3>
+        <p>Add the share line to member sites, make the welcome card, and put a live member counter on e2.life showing the road to 1,000.</p>
+      </div>
+      <div class="step">
+        <div class="when">Weeks 3 to 6</div>
+        <h3>Start the content engine</h3>
+        <p>Two live build clips and one member story every week, posted on TikTok, Reels, Shorts, and in Filipino freelancer groups.</p>
+      </div>
+      <div class="step">
+        <div class="when">Weeks 7 to 12</div>
+        <h3>Close the gap together</h3>
+        <p>Run bring a friend weeks, publish the public bounty board, and count down to 1,000 as a whole community, not a sales target.</p>
+      </div>
+    </div>
+    <div class="note">
+      <h3>What I will do myself</h3>
+      <p>I am John, a web developer and designer from Bacolod City, Philippines. I will share my own E2 site, post my work on Show Your Work Fridays, and welcome new Filipino members who arrive in my time zone. Small help, every week, from every member, is how a friendly room reaches 1,000.</p>
+    </div>
+  </section>
+
+  <footer>
+    <b>Growing E2 to 1,000 Members</b> by John Angelo Vasquez (Gelo), web developer and designer.<br>
+    Made with Muse AI, using five role sidechats: Designer, Developer, Marketing, Community Manager, and Content Creator. Prepared for the E2 bounty, October 2026.
+  </footer>
+</div>
+</body>
+</html>
